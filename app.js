@@ -68,7 +68,7 @@ function checkToGrayscale() {
     return;
   }
 
-  renderMainImage();
+  handleImageLoading();
 }
 
 function getBluredImage() {
@@ -78,13 +78,13 @@ function getBluredImage() {
     return;
   }
 
-  renderMainImage();
+  handleImageLoading();
 }
 
 const imageOnClickHandler = (e) => {
   const imageID = event.target.getAttribute("image-id");
   handleApiRequests.selectedImageId = imageID;
-  setTimeout(renderMainImage, 1000);
+  setTimeout(handleImageLoading, 1000);
 };
 
 function renderImageInformation(imageData) {
@@ -108,7 +108,7 @@ function renderImageInformation(imageData) {
   dataContainer.innerHTML = html;
 }
 
-function renderMainImage() {
+function handleImageLoading() {
   const imageContainer = document.getElementById("card__image-container");
 
   const imageData = handleApiRequests.getImageData(
@@ -132,11 +132,10 @@ function renderMainImage() {
     }
   }
 
-  // kill previous error handlers
-  if (!renderMainImage.isRunning) {
-    renderMainImage.isRunning = true;
+  if (!handleImageLoading.isRunning) {
+    handleImageLoading.isRunning = true;
   } else {
-    renderMainImage.isRunning = false;
+    handleImageLoading.isRunning = false;
     clearTimer();
   }
 
@@ -150,19 +149,16 @@ function renderMainImage() {
     imageContainer.style.backgroundImage = `url(${imageUrl})`;
   };
 
-  img.onerror = () => {
-    imageContainer.innerHTML = renderTimeoutError();
-    imageContainer.style.backgroundImage = ``;
-  };
-
   img.src = imageUrl;
 
   const loadingTimer = () => {
-    renderMainImage.isRunning = false;
-    if (!imageIsLoaded) {
-      img.onload = img.onerror = function () {};
-      clearTimer();
+    if (imageIsLoaded) {
+      return;
     }
+    img.onload = img.onerror = function () {};
+    clearTimer();
+    imageContainer.innerHTML = renderTimeoutError();
+    imageContainer.style.backgroundImage = ``;
   };
 
   timer = setTimeout(loadingTimer, 5000);
