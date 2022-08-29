@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Front-End Intership task</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="container_sidebar" id="container_sidebar_id"></div>
+        <div class="container_main">
+          <div class="container_main_card">
+            <div id="card__image-container"></div>
+            <div id="card__image-information"></div>
+            <hr />
+            <div id="card__image-filters">
+              <div>
+                <h3>Options:</h3>
+              </div>
+              <div class="card_input">
+                <label for="greyscale"
+                  ><input
+                    type="checkbox"
+                    id="greyscale_image_cb"
+                    name="greyscale"
+                  />Grayscale image
+                </label>
+              </div>
+              <div class="card_input">
+                <label for="blur"
+                  >Blur image
+                  <input
+                    type="range"
+                    id="blur_image_rg"
+                    name="blur"
+                    min="0"
+                    max="10"
+                    value="0"
+                /></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
