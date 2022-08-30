@@ -3,7 +3,6 @@
 export class handleApiRequests {
   static isGrayscale = false;
   static page = 1;
-  static options = {};
   static selectedImageId = null;
   static blur = 0;
   static listImageWidth = 200;
@@ -42,6 +41,11 @@ export class handleApiRequests {
 
   static getImageData(imageId) {
     return this.imagesList.find((imageData) => imageData.id === imageId);
+    // Trying to get get data from server, server in most cases return error
+    // return fetch(https://picsum.photos/`${imageId}`/0/info)
+    // .then((response) => response.json())
+    // .then((responseJSON) => {
+    //   return responseJSON }
   }
 
   static addPage() {
