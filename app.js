@@ -102,7 +102,7 @@ function renderImageInformation(imageData) {
   <div>
     <h3>Dimensions:</h3>
     <h4>Width: ${imageData.width} px</h4>
-    <h4>Heigth: ${imageData.height} px</h4>
+    <h4>Height: ${imageData.height} px</h4>
   </div>`;
 
   dataContainer.innerHTML = html;
